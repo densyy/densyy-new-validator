@@ -4,12 +4,16 @@ const conditions = require('./conditions')
 
 /* ---- Module ---- */
 
-const ERRORS = []
+let ERRORS = []
 
 const Validator = {
-  validate: (rules, data) => { validateFn(rules, data) },
-  hasErrors: () => ERRORS.length > 0,
-  first: () => ERRORS[0]
+  validate: (rules, data) => {
+    ERRORS = []
+    validateFn(rules, data)
+  },
+  hasErrors: () => { return ERRORS.length > 0 },
+  first: () => { return ERRORS[0] },
+  errors: () => { return ERRORS }
 }
 
 /* ---- Aux Functions ---- */
