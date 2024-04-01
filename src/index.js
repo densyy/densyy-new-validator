@@ -51,16 +51,29 @@ function checkConditions (propName, propValues, field, data) {
       if (error) ERRORS.push(error)
       break
 
+    case 'min':
+      error = conditions.min(field, data, propValues[1])
+      if (error) ERRORS.push(error)
+      break
+
+    case 'max':
+      error = conditions.max(field, data, propValues[1])
+      if (error) ERRORS.push(error)
+      break
+
+    case 'minLength':
+      error = conditions.minLength(field, data, propValues[1])
+      if (error) ERRORS.push(error)
+      break
+
+    case 'maxLength':
+      error = conditions.maxLength(field, data, propValues[1])
+      if (error) ERRORS.push(error)
+      break
+
     // case 'date':
     //   break
-    // case 'min':
-    //   break
-    // case 'max':
-    //   break
-    // case 'minLength':
-    //   break
-    // case 'maxLength':
-    //   break
+
     // case 'email':
     //   break
   }
