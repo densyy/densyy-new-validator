@@ -9,6 +9,18 @@ function required (field, data) {
   return messages.required(field)
 }
 
+function number (field, data) {
+  if (typeof data[field] === 'number') return false
+  return messages.number(field)
+}
+
+function string (field, data) {
+  if (typeof data[field] === 'string') return false
+  return messages.string(field)
+}
+
 module.exports = {
-  required
+  required,
+  number,
+  string
 }
