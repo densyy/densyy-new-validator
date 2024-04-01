@@ -19,8 +19,32 @@ function string (field, data) {
   return messages.string(field)
 }
 
+function min (field, data, min) {
+  if (data[field] < min) return messages.min(field, min)
+  return false
+}
+
+function max (field, data, max) {
+  if (data[field] > max) return messages.max(field, max)
+  return false
+}
+
+function minLength (field, data, min) {
+  if (data[field]?.length < min) return messages.minLength(field, min)
+  return false
+}
+
+function maxLength (field, data, max) {
+  if (data[field]?.length > max) return messages.maxLength(field, max)
+  return false
+}
+
 module.exports = {
   required,
   number,
-  string
+  string,
+  min,
+  max,
+  minLength,
+  maxLength
 }
