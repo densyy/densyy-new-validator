@@ -26,21 +26,31 @@ function validateFn (rules, data) {
 
       const propValues = prop.split(':')
       const propName = propValues[0]
-      return checkConditions(propName, propValues, field, data)
+      checkConditions(propName, propValues, field, data)
+      continue
     }
   }
 }
 
 function checkConditions (propName, propValues, field, data) {
+  let error = ''
   switch (propName) {
+
     case 'required':
-      const error = conditions.required(field, data)
+      error = conditions.required(field, data)
       if (error) ERRORS.push(error)
       break
-    // case 'number':
-    //   break
-    // case 'string':
-    //   break
+
+    case 'number':
+      error = conditions.number(field, data)
+      if (error) ERRORS.push(error)
+      break
+
+    case 'string':
+      error = conditions.string(field, data)
+      if (error) ERRORS.push(error)
+      break
+
     // case 'date':
     //   break
     // case 'min':
