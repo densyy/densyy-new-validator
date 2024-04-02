@@ -68,6 +68,21 @@ function checkConditions (propName, propValues, field, data) {
       if (error) ERRORS.push(error)
       break
 
+    case 'boolean':
+      error = conditions.boolean(field, data)
+      if (error) ERRORS.push(error)
+      break
+
+    case 'date':
+      error = conditions.date(field, data)
+      if (error) ERRORS.push(error)
+      break
+
+    case 'array':
+      error = conditions.array(field, data)
+      if (error) ERRORS.push(error)
+      break
+
     case 'min':
       error = conditions.min(field, data, propValues[1])
       if (error) ERRORS.push(error)
@@ -88,8 +103,8 @@ function checkConditions (propName, propValues, field, data) {
       if (error) ERRORS.push(error)
       break
 
-    case 'date':
-      error = conditions.date(field, data)
+    case 'size':
+      error = conditions.size(field, data, propValues[1])
       if (error) ERRORS.push(error)
       break
 
@@ -98,8 +113,8 @@ function checkConditions (propName, propValues, field, data) {
       if (error) ERRORS.push(error)
       break
 
-    case 'array':
-      error = conditions.array(field, data)
+    case 'url':
+      error = conditions.url(field, data)
       if (error) ERRORS.push(error)
       break
 
@@ -110,21 +125,6 @@ function checkConditions (propName, propValues, field, data) {
 
     case 'mongoid':
       error = conditions.mongoid(field, data)
-      if (error) ERRORS.push(error)
-      break
-
-    case 'size':
-      error = conditions.size(field, data, propValues[1])
-      if (error) ERRORS.push(error)
-      break
-
-    case 'boolean':
-      error = conditions.boolean(field, data)
-      if (error) ERRORS.push(error)
-      break
-
-    case 'url':
-      error = conditions.url(field, data)
       if (error) ERRORS.push(error)
       break
   }

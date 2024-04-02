@@ -19,6 +19,22 @@ function string (field, data) {
   return messages.string(field)
 }
 
+function boolean (field, data) {
+  if (typeof data[field] === 'boolean') return false
+  return messages.boolean(field)
+}
+
+function date (field, data) {
+  const dateObject = new Date(data[field])
+  if (!isNaN(dateObject?.getTime())) return false
+  return messages.date(field)
+}
+
+function array (field, data) {
+  if (Array.isArray(data[field])) return false
+  return messages.array(field)
+}
+
 function min (field, data, min) {
   if (data[field] < min) return messages.min(field, min)
   return false
@@ -39,10 +55,9 @@ function maxLength (field, data, max) {
   return false
 }
 
-function date (field, data) {
-  const dateObject = new Date(data[field])
-  if (!isNaN(dateObject?.getTime())) return false
-  return messages.date(field)
+function size (field, data, size) {
+  if (data[field]?.length === Number(size)) return false
+  return messages.size(field, size)
 }
 
 function email (field, data) {
@@ -51,9 +66,10 @@ function email (field, data) {
   return messages.email(field)
 }
 
-function array (field, data) {
-  if (Array.isArray(data[field])) return false
-  return messages.array(field)
+function url (field, data) {
+  const regex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/\S*)?$/
+  if (regex.test(data[field])) return false
+  return messages.url(field)
 }
 
 function hex (field, data) {
@@ -68,36 +84,20 @@ function mongoid (field, data) {
   return messages.mongoid(field)
 }
 
-function size (field, data, size) {
-  if (data[field]?.length === Number(size)) return false
-  return messages.size(field, size)
-}
-
-function boolean (field, data) {
-  if (typeof data[field] === 'boolean') return false
-  return messages.boolean(field)
-}
-
-function url (field, data) {
-  const regex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/\S*)?$/
-  if (regex.test(data[field])) return false
-  return messages.url(field)
-}
-
 module.exports = {
   required,
   number,
   string,
+  boolean,
+  date,
+  array,
   min,
   max,
   minLength,
   maxLength,
-  date,
-  email,
-  array,
-  hex,
-  mongoid,
   size,
-  boolean,
-  url
+  email,
+  url,
+  hex,
+  mongoid
 }

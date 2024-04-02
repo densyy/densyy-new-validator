@@ -1,4 +1,4 @@
-const Validator = require('./index')
+const Validator = require('./src/index')
 
 const data = {
   nome: 'Wesley',
@@ -9,7 +9,7 @@ const data = {
   cor: 'FFFFFF',
   id: '6502f78eff780c4f9abc0390',
   'contato': {
-    whatsapp: '13988356948'
+    whatsapp: '99999999'
   },
   site: 'https://www.google.com',
   positivo: false
