@@ -28,6 +28,14 @@ function maxLength (field, max) {
   return `O campo ${field} deve ter no máximo ${max} caracteres.`
 }
 
+function date (field) {
+  return `O campo ${field} deve ser uma data válida.`
+}
+
+function email (field) {
+  return `O campo ${field} deve ser um email válido.`
+}
+
 module.exports = {
   required,
   number,
@@ -35,5 +43,7 @@ module.exports = {
   min,
   max,
   minLength,
-  maxLength
+  maxLength,
+  date,
+  email
 }
