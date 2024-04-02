@@ -36,6 +36,14 @@ function email (field) {
   return `O campo ${field} deve ser um email válido.`
 }
 
+function array (field) {
+  return `O campo ${field} deve ser uma array.`
+}
+
+function hex (field) {
+  return `O campo ${field} deve ser um valor em hexadecimal.`
+}
+
 module.exports = {
   required,
   number,
@@ -45,5 +53,7 @@ module.exports = {
   minLength,
   maxLength,
   date,
-  email
+  email,
+  array,
+  hex
 }
