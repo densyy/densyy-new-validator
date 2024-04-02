@@ -39,6 +39,18 @@ function maxLength (field, data, max) {
   return false
 }
 
+function date (field, data) {
+  const dateObject = new Date(data[field])
+  if (!isNaN(dateObject?.getTime())) return false
+  return messages.date(field)
+}
+
+function email (field, data) {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  if (!regex.test(data[field])) return messages.email(field)
+  return false
+}
+
 module.exports = {
   required,
   number,
@@ -46,5 +58,7 @@ module.exports = {
   min,
   max,
   minLength,
-  maxLength
+  maxLength,
+  date,
+  email
 }
