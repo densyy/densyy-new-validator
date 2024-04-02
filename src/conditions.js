@@ -73,6 +73,17 @@ function size (field, data, size) {
   return messages.size(field, size)
 }
 
+function boolean (field, data) {
+  if (typeof data[field] === 'boolean') return false
+  return messages.boolean(field)
+}
+
+function url (field, data) {
+  const regex = /^(?:(?:https?):\/\/)?(?:www\.)?[^\s\/$.?#].[^\s]*$/i
+  if (regex.test(data[field])) return false
+  return messages.url(field)
+}
+
 module.exports = {
   required,
   number,
@@ -86,5 +97,7 @@ module.exports = {
   array,
   hex,
   mongoid,
-  size
+  size,
+  boolean,
+  url
 }
