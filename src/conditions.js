@@ -47,8 +47,19 @@ function date (field, data) {
 
 function email (field, data) {
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-  if (!regex.test(data[field])) return messages.email(field)
-  return false
+  if (regex.test(data[field])) return false
+  return messages.email(field)
+}
+
+function array (field, data) {
+  if (Array.isArray(data[field])) return false
+  return messages.array(field)
+}
+
+function hex (field, data) {
+  const regex = /^[0-9a-fA-F]+$/;
+  if (regex.test(data[field])) return false
+  return messages.hex(field)
 }
 
 module.exports = {
@@ -60,5 +71,7 @@ module.exports = {
   minLength,
   maxLength,
   date,
-  email
+  email,
+  array,
+  hex
 }
