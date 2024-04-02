@@ -62,6 +62,17 @@ function hex (field, data) {
   return messages.hex(field)
 }
 
+function mongoid (field, data) {
+  const regex = /^[0-9a-fA-F]{24}$/;
+  if (regex.test(data[field])) return false
+  return messages.mongoid(field)
+}
+
+function size (field, data, size) {
+  if (data[field]?.length === Number(size)) return false
+  return messages.size(field, size)
+}
+
 module.exports = {
   required,
   number,
@@ -73,5 +84,7 @@ module.exports = {
   date,
   email,
   array,
-  hex
+  hex,
+  mongoid,
+  size
 }
