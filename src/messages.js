@@ -14,6 +14,8 @@ const Messages = {
   hex: (field) => `O campo ${field} deve ser um valor em hexadecimal.`,
   mongoid: (field) => `O campo ${field} deve ser um id válido.`,
   size: (field, size) => `O campo ${field} deve conter ${size} elementos.`,
+  boolean: (field) => `O campo ${field} deve ser um boleano.`,
+  url: (field) => `O campo ${field} deve ser uma url válida.`,
 }
 
 module.exports = Messages
