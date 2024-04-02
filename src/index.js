@@ -9,6 +9,7 @@ let ERRORS = []
 const Validator = {
   validate: (rules, data) => {
     ERRORS = []
+    data = sanitizeObjectProperties(data)
     validateFn(rules, data)
   },
   hasErrors: () => { return ERRORS.length > 0 },
@@ -30,6 +31,20 @@ function validateFn (rules, data) {
       continue
     }
   }
+}
+
+function sanitizeObjectProperties (obj, prefix = '') {
+  return Object
+    .keys(obj)
+    .reduce((acc, key) => {
+    const newKey = prefix ? `${prefix}.${key}` : key
+    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      Object.assign(acc, sanitizeObjectProperties(obj[key], newKey))
+    } else {
+      acc[newKey] = obj[key]
+    }
+    return acc
+  }, {})
 }
 
 function checkConditions (propName, propValues, field, data) {
