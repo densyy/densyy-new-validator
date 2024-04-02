@@ -90,6 +90,16 @@ function checkConditions (propName, propValues, field, data) {
       error = conditions.hex(field, data)
       if (error) ERRORS.push(error)
       break
+
+    case 'mongoid':
+      error = conditions.mongoid(field, data)
+      if (error) ERRORS.push(error)
+      break
+
+    case 'size':
+      error = conditions.size(field, data, propValues[1])
+      if (error) ERRORS.push(error)
+      break
   }
 }
 
