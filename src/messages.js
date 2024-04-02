@@ -44,6 +44,14 @@ function hex (field) {
   return `O campo ${field} deve ser um valor em hexadecimal.`
 }
 
+function mongoid (field) {
+  return `O campo ${field} deve ser um id válido.`
+}
+
+function size (field, size) {
+  return `O campo ${field} deve conter ${size} elementos.`
+}
+
 module.exports = {
   required,
   number,
@@ -55,5 +63,7 @@ module.exports = {
   date,
   email,
   array,
-  hex
+  hex,
+  mongoid,
+  size
 }
