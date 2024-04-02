@@ -117,6 +117,16 @@ function checkConditions (propName, propValues, field, data) {
       error = conditions.size(field, data, propValues[1])
       if (error) ERRORS.push(error)
       break
+
+    case 'boolean':
+      error = conditions.boolean(field, data)
+      if (error) ERRORS.push(error)
+      break
+
+    case 'url':
+      error = conditions.url(field, data)
+      if (error) ERRORS.push(error)
+      break
   }
 }
 
