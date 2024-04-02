@@ -34,17 +34,19 @@ function validateFn (rules, data) {
 }
 
 function sanitizeObjectProperties (obj, prefix = '') {
+  const reducer = (acc, key) => {
+    const newKey = prefix ? `${prefix}.${key}` : key
+    const isObject = typeof obj[key] === 'object'
+    const isArray = Array.isArray(obj[key])
+
+    if (!isObject || isArray) acc[newKey] = obj[key]
+    else Object.assign(acc, sanitizeObjectProperties(obj[key], newKey))
+    return acc
+  }
+
   return Object
     .keys(obj)
-    .reduce((acc, key) => {
-    const newKey = prefix ? `${prefix}.${key}` : key
-    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
-      Object.assign(acc, sanitizeObjectProperties(obj[key], newKey))
-    } else {
-      acc[newKey] = obj[key]
-    }
-    return acc
-  }, {})
+    .reduce(reducer, {})
 }
 
 function checkConditions (propName, propValues, field, data) {
