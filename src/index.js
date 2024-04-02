@@ -80,6 +80,16 @@ function checkConditions (propName, propValues, field, data) {
       error = conditions.email(field, data)
       if (error) ERRORS.push(error)
       break
+
+    case 'array':
+      error = conditions.array(field, data)
+      if (error) ERRORS.push(error)
+      break
+
+    case 'hex':
+      error = conditions.hex(field, data)
+      if (error) ERRORS.push(error)
+      break
   }
 }
 
