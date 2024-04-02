@@ -79,7 +79,7 @@ function boolean (field, data) {
 }
 
 function url (field, data) {
-  const regex = /^(?:(?:https?):\/\/)?(?:www\.)?[^\s\/$.?#].[^\s]*$/i
+  const regex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/\S*)?$/
   if (regex.test(data[field])) return false
   return messages.url(field)
 }
