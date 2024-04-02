@@ -71,11 +71,15 @@ function checkConditions (propName, propValues, field, data) {
       if (error) ERRORS.push(error)
       break
 
-    // case 'date':
-    //   break
+    case 'date':
+      error = conditions.date(field, data)
+      if (error) ERRORS.push(error)
+      break
 
-    // case 'email':
-    //   break
+    case 'email':
+      error = conditions.email(field, data)
+      if (error) ERRORS.push(error)
+      break
   }
 }
 
